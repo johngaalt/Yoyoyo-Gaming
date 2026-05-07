@@ -28,6 +28,12 @@ const cardDefinitions: CardDefinition[] = [
     title: { ru: 'самолет', es: 'avión', en: 'airplane' },
   },
   {
+    id: 'ambulance',
+    categoryId: 'transport',
+    title: { ru: 'скорая', es: 'ambulancia', en: 'ambulance' },
+    questionTitle: { ru: 'скорую' },
+  },
+  {
     id: 'bicycle',
     categoryId: 'transport',
     title: { ru: 'велосипед', es: 'bicicleta', en: 'bicycle' },
@@ -44,10 +50,26 @@ const cardDefinitions: CardDefinition[] = [
     title: { ru: 'автобус', es: 'autobús', en: 'bus' },
   },
   {
-    id: 'car',
+    id: 'cement-mixer',
     categoryId: 'transport',
-    title: { ru: 'машина', es: 'coche', en: 'car' },
-    questionTitle: { ru: 'машину' },
+    title: { ru: 'бетономешалка', es: 'hormigonera', en: 'cement mixer' },
+    questionTitle: { ru: 'бетономешалку' },
+  },
+  {
+    id: 'crane-truck',
+    categoryId: 'transport',
+    title: { ru: 'кран', es: 'grúa', en: 'crane truck' },
+  },
+  {
+    id: 'fire-truck',
+    categoryId: 'transport',
+    title: { ru: 'пожарная машина', es: 'camión de bomberos', en: 'fire truck' },
+    questionTitle: { ru: 'пожарную машину' },
+  },
+  {
+    id: 'garbage-truck',
+    categoryId: 'transport',
+    title: { ru: 'мусоровоз', es: 'camión de basura', en: 'garbage truck' },
   },
   {
     id: 'helicopter',
@@ -60,6 +82,23 @@ const cardDefinitions: CardDefinition[] = [
     title: { ru: 'мотоцикл', es: 'moto', en: 'motorcycle' },
   },
   {
+    id: 'police-car',
+    categoryId: 'transport',
+    title: { ru: 'полицейская машина', es: 'coche de policía', en: 'police car' },
+    questionTitle: { ru: 'полицейскую машину' },
+  },
+  {
+    id: 'road-roller',
+    categoryId: 'transport',
+    title: { ru: 'каток', es: 'apisonadora', en: 'road roller' },
+  },
+  {
+    id: 'street-sweeper',
+    categoryId: 'transport',
+    title: { ru: 'уборочная машина', es: 'barredora', en: 'street sweeper' },
+    questionTitle: { ru: 'уборочную машину' },
+  },
+  {
     id: 'train',
     categoryId: 'transport',
     title: { ru: 'поезд', es: 'tren', en: 'train' },
@@ -68,11 +107,6 @@ const cardDefinitions: CardDefinition[] = [
     id: 'tram',
     categoryId: 'transport',
     title: { ru: 'трамвай', es: 'tranvía', en: 'tram' },
-  },
-  {
-    id: 'truck',
-    categoryId: 'transport',
-    title: { ru: 'грузовик', es: 'camión', en: 'truck' },
   },
   {
     id: 'apple',
