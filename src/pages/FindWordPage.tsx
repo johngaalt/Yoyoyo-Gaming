@@ -1,0 +1,119 @@
+import { useEffect, useMemo, useState } from 'react'
+import { Navigate, useParams } from 'react-router-dom'
+import { categories, type CategoryId } from '../entities/category'
+import { getCardsByCategory, type LearningCard } from '../entities/card'
+import { uiText } from '../entities/language'
+import { createFindWordRound } from '../features/find-word/lib/createFindWordRound'
+import { buildFindWordQuestion } from '../features/find-word/lib/buildFindWordQuestion'
+import { FindWordGame } from '../features/find-word/ui/FindWordGame'
+import { speakText } from '../shared/lib/speech'
+import { BackLink } from '../shared/ui/BackLink'
+import { Page } from '../shared/ui/Page'
+import { PrimaryButton } from '../shared/ui/PrimaryButton'
+import { useAppStore } from '../store/appStore'
+
+const isCategoryId = (value: string | undefined): value is CategoryId =>
+  categories.some((category) => category.id === value)
+
+export function FindWordPage() {
+  const { categoryId } = useParams()
+  const language = useAppStore((state) => state.language)
+  const markCorrect = useAppStore((state) => state.markCorrect)
+  const markHeard = useAppStore((state) => state.markHeard)
+  const [roundNumber, setRoundNumber] = useState(0)
+  const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
+  const resolvedCategoryId = isCategoryId(categoryId) ? categoryId : null
+  const categoryCards = useMemo(
+    () => (resolvedCategoryId ? getCardsByCategory(resolvedCategoryId) : []),
+    [resolvedCategoryId],
+  )
+  const round = useMemo(
+    () =>
+      categoryCards.length > 0
+        ? createFindWordRound(categoryCards, 3, roundNumber)
+        : null,
+    [categoryCards, roundNumber],
+  )
+  const question = useMemo(
+    () => (language && round ? buildFindWordQuestion(round.target, language) : ''),
+    [language, round],
+  )
+
+  useEffect(() => {
+    if (!language || !question) {
+      return
+    }
+
+    speakText(question, language)
+  }, [language, question])
+
+  if (!language) {
+    return <Navigate to="/" replace />
+  }
+
+  if (!resolvedCategoryId || !round) {
+    return <Navigate to="/categories" replace />
+  }
+
+  const isCorrect = selectedCardId === round.target.id
+  const isWrong = selectedCardId !== null && !isCorrect
+
+  const handleChoose = (card: LearningCard) => {
+    setSelectedCardId(card.id)
+
+    if (card.id === round.target.id) {
+      markCorrect(card.id)
+      speakText(uiText.correct[language], language)
+      markHeard(card.id)
+      return
+    }
+
+    speakText(uiText.tryAgain[language], language)
+  }
+
+  const handleNextRound = () => {
+    setSelectedCardId(null)
+    setRoundNumber((value) => value + 1)
+  }
+
+  const handleTryAgain = () => {
+    setSelectedCardId(null)
+  }
+
+  return (
+    <Page className="gap-5 bg-[#f1ffe9]">
+      <header className="flex items-center justify-between gap-3">
+        <BackLink to="/categories" language={language} />
+        {isCorrect && (
+          <PrimaryButton
+            tone="sky"
+            className="min-h-12 px-5 text-lg"
+            onClick={handleNextRound}
+          >
+            {uiText.next[language]}
+          </PrimaryButton>
+        )}
+        {isWrong && (
+          <PrimaryButton
+            tone="rose"
+            className="min-h-12 px-5 text-lg"
+            onClick={handleTryAgain}
+          >
+            {uiText.tryAgain[language]}
+          </PrimaryButton>
+        )}
+      </header>
+
+      <FindWordGame
+        language={language}
+        target={round.target}
+        question={question}
+        choices={round.choices}
+        selectedCardId={selectedCardId}
+        isCorrect={isCorrect}
+        isWrong={isWrong}
+        onChoose={handleChoose}
+      />
+    </Page>
+  )
+}
