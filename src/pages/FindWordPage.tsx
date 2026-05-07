@@ -5,6 +5,7 @@ import { getCardsByCategory, type LearningCard } from '../entities/card'
 import { uiText } from '../entities/language'
 import { createFindWordRound } from '../features/find-word/lib/createFindWordRound'
 import { buildFindWordQuestion } from '../features/find-word/lib/buildFindWordQuestion'
+import { getNextPraise } from '../features/find-word/lib/getNextPraise'
 import { FindWordGame } from '../features/find-word/ui/FindWordGame'
 import { speakText } from '../shared/lib/speech'
 import { BackLink } from '../shared/ui/BackLink'
@@ -22,6 +23,10 @@ export function FindWordPage() {
   const markHeard = useAppStore((state) => state.markHeard)
   const [roundNumber, setRoundNumber] = useState(0)
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null)
+  const [praiseText, setPraiseText] = useState<string | null>(null)
+  const [remainingPraiseIndexes, setRemainingPraiseIndexes] = useState<
+    number[]
+  >([])
   const resolvedCategoryId = isCategoryId(categoryId) ? categoryId : null
   const categoryCards = useMemo(
     () => (resolvedCategoryId ? getCardsByCategory(resolvedCategoryId) : []),
@@ -62,8 +67,12 @@ export function FindWordPage() {
     setSelectedCardId(card.id)
 
     if (card.id === round.target.id) {
+      const nextPraise = getNextPraise(language, remainingPraiseIndexes)
+
       markCorrect(card.id)
-      speakText(uiText.correct[language], language)
+      setPraiseText(nextPraise.text)
+      setRemainingPraiseIndexes(nextPraise.remainingIndexes)
+      speakText(nextPraise.text, language)
       markHeard(card.id)
       return
     }
@@ -73,11 +82,13 @@ export function FindWordPage() {
 
   const handleNextRound = () => {
     setSelectedCardId(null)
+    setPraiseText(null)
     setRoundNumber((value) => value + 1)
   }
 
   const handleTryAgain = () => {
     setSelectedCardId(null)
+    setPraiseText(null)
   }
 
   return (
@@ -112,7 +123,9 @@ export function FindWordPage() {
         selectedCardId={selectedCardId}
         isCorrect={isCorrect}
         isWrong={isWrong}
+        praiseText={praiseText}
         onChoose={handleChoose}
+        onNext={handleNextRound}
       />
     </Page>
   )

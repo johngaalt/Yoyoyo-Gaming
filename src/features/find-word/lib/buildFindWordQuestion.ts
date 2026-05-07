@@ -5,7 +5,7 @@ export const buildFindWordQuestion = (
   card: LearningCard,
   language: LanguageCode,
 ) => {
-  const word = card.title[language]
+  const word = card.questionTitle?.[language] ?? card.title[language]
 
   if (language === 'ru') {
     return `Выбери ${word}`

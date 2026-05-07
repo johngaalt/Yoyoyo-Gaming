@@ -11,7 +11,9 @@ interface FindWordGameProps {
   selectedCardId: string | null
   isCorrect: boolean
   isWrong: boolean
+  praiseText: string | null
   onChoose: (card: LearningCard) => void
+  onNext: () => void
 }
 
 export function FindWordGame({
@@ -22,7 +24,9 @@ export function FindWordGame({
   selectedCardId,
   isCorrect,
   isWrong,
+  praiseText,
   onChoose,
+  onNext,
 }: FindWordGameProps) {
   return (
     <section className="flex flex-1 flex-col gap-5 lg:grid lg:grid-cols-[360px_1fr] lg:items-center lg:gap-8">
@@ -40,13 +44,21 @@ export function FindWordGame({
           const selected = selectedCardId === card.id
           const correctSelected = selected && card.id === target.id
           const wrongSelected = selected && card.id !== target.id
+          const handleClick = () => {
+            if (correctSelected) {
+              onNext()
+              return
+            }
+
+            onChoose(card)
+          }
 
           return (
             <motion.button
               key={card.id}
               type="button"
               whileTap={{ scale: 0.96 }}
-              onClick={() => onChoose(card)}
+              onClick={handleClick}
               className={clsx(
                 'flex min-h-36 items-center justify-center rounded-[2rem] bg-white p-5 shadow-lg ring-4 transition lg:min-h-96 lg:p-7',
                 correctSelected && 'ring-emerald-300',
@@ -66,18 +78,28 @@ export function FindWordGame({
       </div>
 
       <AnimatePresence>
-        {(isCorrect || isWrong) && (
+        {isCorrect && praiseText && (
+          <motion.button
+            type="button"
+            initial={{ opacity: 0, y: 18, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -12, scale: 0.96 }}
+            whileTap={{ scale: 0.96 }}
+            onClick={onNext}
+            className="fixed inset-x-5 bottom-7 mx-auto max-w-sm rounded-[2rem] bg-emerald-300 px-6 py-5 text-center text-4xl font-black text-emerald-950 shadow-2xl"
+          >
+            {praiseText}
+          </motion.button>
+        )}
+
+        {isWrong && (
           <motion.div
             initial={{ opacity: 0, y: 18, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.96 }}
-            className={clsx(
-              'fixed inset-x-5 bottom-7 mx-auto max-w-sm rounded-[2rem] px-6 py-5 text-center text-4xl font-black shadow-2xl',
-              isCorrect && 'bg-emerald-300 text-emerald-950',
-              isWrong && 'bg-rose-300 text-rose-950',
-            )}
+            className="fixed inset-x-5 bottom-7 mx-auto max-w-sm rounded-[2rem] bg-rose-300 px-6 py-5 text-center text-4xl font-black text-rose-950 shadow-2xl"
           >
-            {isCorrect ? uiText.correct[language] : uiText.tryAgain[language]}
+            {uiText.tryAgain[language]}
           </motion.div>
         )}
       </AnimatePresence>

@@ -48,6 +48,7 @@ export const cards: LearningCard[] = [
     categoryId: 'transport',
     imageSrc: boatImage,
     title: { ru: 'лодка', es: 'barco', en: 'boat' },
+    questionTitle: { ru: 'лодку' },
   },
   {
     id: 'bus',
@@ -60,6 +61,7 @@ export const cards: LearningCard[] = [
     categoryId: 'transport',
     imageSrc: carImage,
     title: { ru: 'машина', es: 'coche', en: 'car' },
+    questionTitle: { ru: 'машину' },
   },
   {
     id: 'helicopter',
@@ -120,6 +122,7 @@ export const cards: LearningCard[] = [
     categoryId: 'food',
     imageSrc: chickenImage,
     title: { ru: 'курица', es: 'pollo', en: 'chicken' },
+    questionTitle: { ru: 'курицу' },
   },
   {
     id: 'egg',
@@ -132,6 +135,7 @@ export const cards: LearningCard[] = [
     categoryId: 'food',
     imageSrc: fishImage,
     title: { ru: 'рыба', es: 'pez', en: 'fish' },
+    questionTitle: { ru: 'рыбу' },
   },
   {
     id: 'milk',
@@ -144,6 +148,7 @@ export const cards: LearningCard[] = [
     categoryId: 'food',
     imageSrc: pastaImage,
     title: { ru: 'паста', es: 'pasta', en: 'pasta' },
+    questionTitle: { ru: 'пасту' },
   },
   {
     id: 'rice',
@@ -156,60 +161,70 @@ export const cards: LearningCard[] = [
     categoryId: 'animals',
     imageSrc: bearImage,
     title: { ru: 'медведь', es: 'oso', en: 'bear' },
+    questionTitle: { ru: 'медведя' },
   },
   {
     id: 'bird',
     categoryId: 'animals',
     imageSrc: birdImage,
     title: { ru: 'птица', es: 'pájaro', en: 'bird' },
+    questionTitle: { ru: 'птицу' },
   },
   {
     id: 'cat',
     categoryId: 'animals',
     imageSrc: catImage,
     title: { ru: 'кот', es: 'gato', en: 'cat' },
+    questionTitle: { ru: 'кота' },
   },
   {
     id: 'cow',
     categoryId: 'animals',
     imageSrc: cowImage,
     title: { ru: 'корова', es: 'vaca', en: 'cow' },
+    questionTitle: { ru: 'корову' },
   },
   {
     id: 'dog',
     categoryId: 'animals',
     imageSrc: dogImage,
     title: { ru: 'собака', es: 'perro', en: 'dog' },
+    questionTitle: { ru: 'собаку' },
   },
   {
     id: 'elephant',
     categoryId: 'animals',
     imageSrc: elephantImage,
     title: { ru: 'слон', es: 'elefante', en: 'elephant' },
+    questionTitle: { ru: 'слона' },
   },
   {
     id: 'horse',
     categoryId: 'animals',
     imageSrc: horseImage,
     title: { ru: 'лошадь', es: 'caballo', en: 'horse' },
+    questionTitle: { ru: 'лошадь' },
   },
   {
     id: 'lion',
     categoryId: 'animals',
     imageSrc: lionImage,
     title: { ru: 'лев', es: 'león', en: 'lion' },
+    questionTitle: { ru: 'льва' },
   },
   {
     id: 'monkey',
     categoryId: 'animals',
     imageSrc: monkeyImage,
     title: { ru: 'обезьяна', es: 'mono', en: 'monkey' },
+    questionTitle: { ru: 'обезьяну' },
   },
   {
     id: 'pig',
     categoryId: 'animals',
     imageSrc: pigImage,
     title: { ru: 'свинья', es: 'cerdo', en: 'pig' },
+    questionTitle: { ru: 'свинью' },
   },
 ]
 

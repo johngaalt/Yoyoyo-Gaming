@@ -6,4 +6,5 @@ export interface LearningCard {
   categoryId: CategoryId
   imageSrc: string
   title: LocalizedText
+  questionTitle?: Partial<LocalizedText>
 }

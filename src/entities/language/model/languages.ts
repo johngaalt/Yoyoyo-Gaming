@@ -38,9 +38,9 @@ export const uiText = {
     en: 'Choose:',
   },
   correct: {
-    ru: 'Правильно!',
-    es: '¡Correcto!',
-    en: 'Correct!',
+    ru: 'Молодец, Марк!',
+    es: '¡Muy bien, Mark!',
+    en: 'Great job, Mark!',
   },
   tryAgain: {
     ru: 'Ещё раз',
