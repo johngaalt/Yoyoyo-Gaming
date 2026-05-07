@@ -313,6 +313,7 @@ const cardDefinitions: CardDefinition[] = [
   {
     id: 'teddybear',
     categoryId: 'toys',
+    imageFile: 'teddy',
     title: { ru: 'мишка', es: 'osito', en: 'teddy bear' },
     questionTitle: { ru: 'мишку' },
   },
@@ -904,6 +905,11 @@ const cardDefinitions: CardDefinition[] = [
     id: 'embarrassed',
     categoryId: 'emotions',
     title: { ru: 'смущение', es: 'vergüenza', en: 'embarrassed' },
+  },
+  {
+    id: 'excited',
+    categoryId: 'emotions',
+    title: { ru: 'восторг', es: 'emoción', en: 'excited' },
   },
   {
     id: 'furious',
