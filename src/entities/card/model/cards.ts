@@ -147,8 +147,8 @@ export const cards: LearningCard[] = [
     id: 'pasta',
     categoryId: 'food',
     imageSrc: pastaImage,
-    title: { ru: 'паста', es: 'pasta', en: 'pasta' },
-    questionTitle: { ru: 'пасту' },
+    title: { ru: 'макароны', es: 'pasta', en: 'pasta' },
+    questionTitle: { ru: 'макароны' },
   },
   {
     id: 'rice',
