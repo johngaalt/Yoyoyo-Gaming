@@ -217,6 +217,7 @@ const cardDefinitions: CardDefinition[] = [
     id: 'mosquito',
     categoryId: 'animals',
     title: { ru: 'комар', es: 'mosquito', en: 'mosquito' },
+    questionTitle: { ru: 'комара' },
   },
   {
     id: 'snake',
