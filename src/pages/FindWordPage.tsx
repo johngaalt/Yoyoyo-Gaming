@@ -92,7 +92,7 @@ export function FindWordPage() {
   }
 
   return (
-    <Page className="h-svh gap-3 overflow-hidden bg-[#f1ffe9] py-4 lg:gap-5 lg:py-6">
+    <Page className="fixed inset-0 h-[100dvh] min-h-0 max-w-none gap-2 overflow-hidden bg-[#f1ffe9] px-3 py-3 lg:mx-auto lg:h-[100dvh] lg:max-w-6xl lg:gap-5 lg:px-10 lg:py-6">
       <header className="flex shrink-0 items-center justify-between gap-3">
         <BackLink to="/categories" language={language} />
         {isCorrect && (

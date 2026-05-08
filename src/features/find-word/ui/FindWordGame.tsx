@@ -29,17 +29,17 @@ export function FindWordGame({
   onNext,
 }: FindWordGameProps) {
   return (
-    <section className="flex min-h-0 flex-1 flex-col gap-3 lg:grid lg:grid-cols-[minmax(280px,360px)_1fr] lg:items-stretch lg:gap-6">
-      <div className="flex shrink-0 flex-col justify-center rounded-[1.5rem] bg-white px-4 py-4 text-center shadow-lg ring-4 ring-white/70 lg:min-h-0 lg:rounded-[2rem] lg:px-7 lg:py-6">
-        <p className="text-base font-black text-slate-500 lg:text-xl">
+    <section className="flex min-h-0 flex-1 flex-col gap-2 lg:grid lg:grid-cols-[minmax(280px,360px)_1fr] lg:items-stretch lg:gap-6">
+      <div className="flex shrink-0 flex-col justify-center rounded-[1.25rem] bg-white px-3 py-3 text-center shadow-lg ring-4 ring-white/70 lg:min-h-0 lg:rounded-[2rem] lg:px-7 lg:py-6">
+        <p className="text-sm font-black text-slate-500 lg:text-xl">
           {uiText.appName[language]}
         </p>
-        <h1 className="mt-1 break-words text-[clamp(2rem,11vw,3.5rem)] font-black leading-tight text-slate-950 lg:mt-2 lg:text-[clamp(2.75rem,4.2vw,4.25rem)]">
+        <h1 className="mt-1 break-words text-[clamp(1.75rem,9vw,2.75rem)] font-black leading-[1.08] text-slate-950 lg:mt-2 lg:text-[clamp(2.75rem,4.2vw,4.25rem)] lg:leading-tight">
           {question}
         </h1>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-3 gap-2 lg:gap-6">
+      <div className="grid min-h-0 flex-1 grid-cols-3 gap-1.5 lg:gap-6">
         {choices.map((card) => {
           const selected = selectedCardId === card.id
           const correctSelected = selected && card.id === target.id
@@ -60,7 +60,7 @@ export function FindWordGame({
               whileTap={{ scale: 0.96 }}
               onClick={handleClick}
               className={clsx(
-                'flex min-h-0 items-center justify-center rounded-[1.5rem] bg-white p-3 shadow-lg ring-4 transition lg:rounded-[2rem] lg:p-6',
+                'flex min-h-0 items-center justify-center rounded-[1.25rem] bg-white p-2 shadow-lg ring-4 transition lg:rounded-[2rem] lg:p-6',
                 correctSelected && 'ring-emerald-300',
                 wrongSelected && 'ring-rose-300',
                 !selected && 'ring-white/70',
@@ -69,7 +69,7 @@ export function FindWordGame({
               <img
                 src={card.imageSrc}
                 alt={card.title[language]}
-                className="h-[min(24vw,10rem)] w-[min(24vw,10rem)] object-contain lg:h-[min(24vw,14rem)] lg:w-[min(24vw,14rem)]"
+                className="h-[min(23vw,9rem)] w-[min(23vw,9rem)] object-contain lg:h-[min(24vw,14rem)] lg:w-[min(24vw,14rem)]"
                 draggable={false}
               />
             </motion.button>
