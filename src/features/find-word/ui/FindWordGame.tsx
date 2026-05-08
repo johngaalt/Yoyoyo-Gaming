@@ -34,12 +34,12 @@ export function FindWordGame({
         <p className="text-sm font-black text-slate-500 lg:text-xl">
           {uiText.appName[language]}
         </p>
-        <h1 className="mt-1 break-words text-[clamp(1.75rem,9vw,2.75rem)] font-black leading-[1.08] text-slate-950 lg:mt-2 lg:text-[clamp(2.75rem,4.2vw,4.25rem)] lg:leading-tight">
+        <h1 className="mt-1 break-words text-[clamp(1.45rem,7.5vw,2.25rem)] font-black leading-[1.05] text-slate-950 lg:mt-2 lg:text-[clamp(2.75rem,4.2vw,4.25rem)] lg:leading-tight">
           {question}
         </h1>
       </div>
 
-      <div className="grid min-h-0 flex-1 grid-cols-3 gap-1.5 lg:gap-6">
+      <div className="grid h-[clamp(7.5rem,28dvh,11rem)] min-h-0 shrink-0 grid-cols-3 gap-1.5 lg:h-auto lg:flex-1 lg:gap-6">
         {choices.map((card) => {
           const selected = selectedCardId === card.id
           const correctSelected = selected && card.id === target.id
@@ -69,7 +69,7 @@ export function FindWordGame({
               <img
                 src={card.imageSrc}
                 alt={card.title[language]}
-                className="h-[min(23vw,9rem)] w-[min(23vw,9rem)] object-contain lg:h-[min(24vw,14rem)] lg:w-[min(24vw,14rem)]"
+                className="h-[min(22vw,7.5rem)] w-[min(22vw,7.5rem)] object-contain lg:h-[min(24vw,14rem)] lg:w-[min(24vw,14rem)]"
                 draggable={false}
               />
             </motion.button>
